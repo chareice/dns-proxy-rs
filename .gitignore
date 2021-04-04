@@ -1,1 +1,4 @@
 /target
+domain_cache.txt
+.env
+.idea
