@@ -28,6 +28,7 @@ fn main() {
     dotenv().ok();
 
     let socket = UdpSocket::bind(std::env::var("LISTEN").unwrap()).unwrap();
+    info!("Server Started");
 
     thread::spawn(|| loop {
         thread::sleep(Duration::from_secs(5));
@@ -68,9 +69,9 @@ fn handle_request(
     info!("Receive Query Domain {}", domain_name);
 
     let dns_server = if china_domain::is_china_domain(&domain_name)? {
-        "https://dns.alidns.com"
+        "https://223.5.5.5"
     } else {
-        "https://cloudflare-dns.com"
+        "https://1.1.1.1"
     };
 
     let client = reqwest::blocking::Client::new();

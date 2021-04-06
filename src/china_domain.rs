@@ -34,7 +34,7 @@ impl DomainCache {
     pub(crate) fn sync_to_file(&self) -> Result<(), std::io::Error> {
         let mut cache_file = OpenOptions::new().write(true).open(&self.cache_path)?;
         let result = cache_file.write_all(serde_json::to_string(&self.list)?.as_bytes());
-        info!("China Domain Cache Saved");
+        debug!("China Domain Cache Saved");
         result
     }
 
