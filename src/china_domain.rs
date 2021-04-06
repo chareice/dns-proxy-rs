@@ -81,7 +81,7 @@ fn is_beian_domain(domain: &String) -> Result<bool, Box<dyn std::error::Error>> 
 
     let mut cache = GLOBAL_DATA.lock().unwrap();
 
-    let cache_result = cache.find_domain(domain);
+    let cache_result = cache.find_domain(&query_domain);
 
     let result = match cache_result {
         Some(domain_cache_result) => *domain_cache_result,
@@ -101,7 +101,7 @@ fn is_beian_domain(domain: &String) -> Result<bool, Box<dyn std::error::Error>> 
             ))?;
 
             let result = api_state_code == 1;
-            cache.add_domain(domain.clone(), result);
+            cache.add_domain(query_domain.clone(), result);
 
             result
         }

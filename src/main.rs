@@ -71,7 +71,7 @@ fn handle_request(
     let dns_server = if china_domain::is_china_domain(&domain_name)? {
         "https://dns.alidns.com"
     } else {
-        "https://cloudflare-dns.com"
+        "https://1.1.1.1"
     };
 
     let client = reqwest::blocking::Client::new();
