@@ -68,10 +68,10 @@ fn handle_request(
 
     info!("Receive Query Domain {}", domain_name);
 
-    let dns_server = if china_domain::is_china_domain(&domain_name)? {
-        "https://dns.alidns.com"
+    let dns_server: String = if china_domain::is_china_domain(&domain_name)? {
+        std::env::var("CHINA_DNS_SERVER").unwrap_or("https://dns.alidns.com".into())
     } else {
-        "https://1.1.1.1"
+        std::env::var("OVERSEA_DNS_SERVER").unwrap_or("https://1.1.1.1".into())
     };
 
     let client = reqwest::blocking::Client::new();
