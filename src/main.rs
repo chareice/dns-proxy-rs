@@ -31,7 +31,7 @@ fn main() {
     info!("Server Started");
 
     thread::spawn(|| loop {
-        thread::sleep(Duration::from_secs(5));
+        thread::sleep(Duration::from_secs(60 * 60 * 5));
         let cache = GLOBAL_DATA.lock().unwrap();
         cache.sync_to_file().unwrap();
     });
